@@ -10,6 +10,7 @@ public class Ejercicio1{
 		else if (x % 5 == 0)
 			resultado = transformar (x/5);
 		else return x;
+		
 		return resultado;
 	}
 }
