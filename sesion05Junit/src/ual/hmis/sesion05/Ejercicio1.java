@@ -11,5 +11,11 @@ public class Ejercicio1{
 			resultado = transformar (x/5);
 		else return x;
 		return resultado;
+		
+		
+		
+		
+		
+		
 	}
 }
