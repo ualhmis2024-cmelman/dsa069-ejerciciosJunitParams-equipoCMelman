@@ -18,7 +18,7 @@ public class Ejercicio5Test {
 		@ParameterizedTest(name = "{index} => Con password ({0}) sale {1}")
 		void testpaswor(String password, String result) {
 			// Arrange
-			Ejercicio5 e3 = new Ejercicio5();
+			ContadorDePalabras e3 = new ContadorDePalabras();
 			// Act
 			// Assert
 			//assertEquals(result, e3.paswor(password));
