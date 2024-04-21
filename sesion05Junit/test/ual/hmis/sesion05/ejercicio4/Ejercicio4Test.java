@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class Ejercicio4Test {
-		@CsvFileSource(resources = "Ejercicio4.csv", delimiter=':', numLinesToSkip = 1)
+		@CsvFileSource(resources = "/Ejercicio4.csv", delimiter=':', numLinesToSkip = 1)
 		@ParameterizedTest(name = "{index} => al1=({0}), al2=({1}), resultado=({2})")
 		@MethodSource
 		void testpaswor(List<String> al1, List<String> al2, List<String> result) {
