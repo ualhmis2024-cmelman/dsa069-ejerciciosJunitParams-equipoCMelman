@@ -1,12 +1,19 @@
 package ual.hmis.sesion05.ejercicio5;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.TreeMap;
+
+import ual.hmis.sesion05.ejercicio5.Pair;
 
 public class ContadorDePalabras {
 
 	private static TreeMap<String, Integer> datos = new TreeMap<>();
+	private static TreeMap<Integer, ArrayList<String>> frecuencia = new TreeMap<>();
+	private static ArrayList<Pair<String, Integer>> pal = new ArrayList<>();
+	
 
 	public TreeMap<String, Integer> contadorPalabras (String[] palabras){
 		for (String palabra : palabras) {
@@ -15,24 +22,49 @@ public class ContadorDePalabras {
 		return datos;
 	}
 	
-	public TreeMap<Integer, String> ordenarFrecuencia (TreeMap<String, Integer> auxiliar){
-		TreeMap<Integer, String> result = new TreeMap<>();
+	public TreeMap<Integer, ArrayList<String>> ordenarFrecuencia (TreeMap<String, Integer> auxiliar){
 		for (Entry<String, Integer> entry : datos.entrySet()) {
-			result.put(entry.getValue(), entry.getKey());
+			String palabra = entry.getKey();
+			int contador = entry.getValue();
+			if (frecuencia.containsKey(contador)) {
+				frecuencia.get(contador).add(palabra);
+			} else {
+				frecuencia.put(contador, new ArrayList<>());
+				frecuencia.get(contador).add(palabra);
+			}
 		}
-		return result;
+		return frecuencia;
+	}
+	
+	public ArrayList<Pair<String, Integer>> ordenarPalabra (TreeMap<String, Integer> auxiliar){
+		for (Entry<String, Integer> entry : datos.entrySet()) {
+			for (int i=0; i<entry.getValue(); i++) {
+				Pair<String, Integer> par = new Pair<>(entry.getKey(), entry.getValue());
+				pal.add(par);
+			}
+		}
+		return pal;
 	}
 
 	public static void main(String[] args) {
 		ContadorDePalabras cont = new ContadorDePalabras();
-		String[] palabras = {"Sofia", "Viator", "Marcelo", "Marcela", "Macarena", "Macarena"};
+		String line = "";
+		Scanner scan = null;
+		try {
+			scan = new Scanner(new File("Coriolis"));
+		} catch (Exception e) {
+			System.out.println("Se ha producido un error al abrir el archivo " + e.getMessage());
+		}
+		line = scan.nextLine();
+		String[] palabras = line.toLowerCase().trim().split(" ");
 		cont.contadorPalabras(palabras);
 		System.out.println(datos);
 		cont.contadorPalabras(palabras);
 		System.out.println(datos);
-		String[] palabras1 = {"Pedro"};
-		cont.contadorPalabras(palabras1);
-		System.out.println(datos);
+		cont.ordenarFrecuencia(datos);
+		System.out.println(frecuencia);
+		cont.ordenarPalabra(datos);
+		System.out.println(pal);
 	}
 
 }
