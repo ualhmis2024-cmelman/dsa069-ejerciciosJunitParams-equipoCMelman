@@ -17,6 +17,7 @@ public class ContadorDePalabras {
 		}else {
 			result.put(palabras, contador=1);
 		}
+		return result;
 	}
 	
 }
