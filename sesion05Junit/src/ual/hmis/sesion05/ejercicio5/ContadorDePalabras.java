@@ -15,11 +15,20 @@ public class ContadorDePalabras {
 	private static ArrayList<Pair<String, Integer>> pal = new ArrayList<>();
 	
 
-	public TreeMap<String, Integer> contadorPalabras (String[] palabras){
-		for (String palabra : palabras) {
-			datos.put(palabra, datos.containsKey(palabra) ? datos.get(palabra) + 1 : 1);
-		}
-		return datos;
+	public TreeMap<String, Integer> contadorPalabras (String rutaArchivo){
+		datos.clear();
+		try (Scanner scanner = new Scanner(new File(rutaArchivo))) {
+	        while (scanner.hasNextLine()) {
+	            String line = scanner.nextLine();
+	            String[] palabras = line.toLowerCase().trim().split(" ");
+	            for (String palabra : palabras) {
+	                datos.put(palabra, datos.containsKey(palabra) ? datos.get(palabra) + 1 : 1);
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.out.println("No se ha encontrado el archivo: " + e.getMessage());
+	    }
+	    return datos;
 	}
 	
 	public TreeMap<Integer, ArrayList<String>> ordenarFrecuencia (TreeMap<String, Integer> auxiliar){
@@ -46,25 +55,15 @@ public class ContadorDePalabras {
 		return pal;
 	}
 
-	public static void main(String[] args) {
-		ContadorDePalabras cont = new ContadorDePalabras();
-		String line = "";
-		Scanner scan = null;
-		try {
-			scan = new Scanner(new File("Coriolis"));
-		} catch (Exception e) {
-			System.out.println("Se ha producido un error al abrir el archivo " + e.getMessage());
-		}
-		line = scan.nextLine();
-		String[] palabras = line.toLowerCase().trim().split(" ");
-		cont.contadorPalabras(palabras);
-		System.out.println(datos);
-		cont.contadorPalabras(palabras);
-		System.out.println(datos);
-		cont.ordenarFrecuencia(datos);
-		System.out.println(frecuencia);
-		cont.ordenarPalabra(datos);
-		System.out.println(pal);
-	}
+//	public static void main(String[] args) {
+//		ContadorDePalabras cont = new ContadorDePalabras();
+//		String rutaRelativa = "test/resources/Coriolis.txt";
+//		cont.contadorPalabras(rutaRelativa);
+//		System.out.println(datos);
+//		cont.ordenarFrecuencia(datos);
+//		System.out.println(frecuencia);
+//		cont.ordenarPalabra(datos);
+//		System.out.println(pal);
+//	}
 
 }
