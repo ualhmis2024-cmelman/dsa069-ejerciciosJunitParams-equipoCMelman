@@ -17,7 +17,7 @@ public class Ejercicio5Test {
         TreeMap<String, Integer> resultadoEsperado = new TreeMap<>();
         
         resultadoEsperado.put("1836", 1);
-        resultadoEsperado.put("científico", 1);
+        resultadoEsperado.put("cientifico", 1);
         resultadoEsperado.put("coriolis", 1);
         resultadoEsperado.put("de", 1);
         resultadoEsperado.put("descrito", 1);
@@ -25,26 +25,16 @@ public class Ejercicio5Test {
         resultadoEsperado.put("el", 3);
         resultadoEsperado.put("en", 3);
         resultadoEsperado.put("es", 1);
-        resultadoEsperado.put("francés", 1);
+        resultadoEsperado.put("frances", 1);
         resultadoEsperado.put("observa", 1);
         resultadoEsperado.put("por", 1);
         resultadoEsperado.put("que", 1);
         resultadoEsperado.put("referencia", 1);
-        resultadoEsperado.put("rotación", 1);
+        resultadoEsperado.put("rotacion", 1);
         resultadoEsperado.put("se", 1);
         resultadoEsperado.put("sistema", 1);
         resultadoEsperado.put("un", 1);
 
-        TreeMap<String, Integer> resultadoObtenido = contador.contadorPalabras(rutaArchivo);
-
-        assertEquals(resultadoEsperado, resultadoObtenido);
-    }
-    
-    @ParameterizedTest
-    @ValueSource(strings = {"test/resources/Almería.txt"})
-    public void testContadorPalabrasFallo(String rutaArchivo) {
-        ContadorDePalabras contador = new ContadorDePalabras();
-        TreeMap<String, Integer> resultadoEsperado = new TreeMap<>();
         TreeMap<String, Integer> resultadoObtenido = contador.contadorPalabras(rutaArchivo);
 
         assertEquals(resultadoEsperado, resultadoObtenido);
@@ -71,7 +61,7 @@ public class Ejercicio5Test {
         
         ArrayList<Pair<String, Integer>> resultadoEsperado = new ArrayList<>();
         resultadoEsperado.add(new Pair<>("1836", 1));
-        resultadoEsperado.add(new Pair<>("científico", 1));
+        resultadoEsperado.add(new Pair<>("cientifico", 1));
         resultadoEsperado.add(new Pair<>("coriolis", 1));
         resultadoEsperado.add(new Pair<>("de", 1));
         resultadoEsperado.add(new Pair<>("descrito", 1));
@@ -84,12 +74,12 @@ public class Ejercicio5Test {
         resultadoEsperado.add(new Pair<>("en", 3));
         resultadoEsperado.add(new Pair<>("en", 3));
         resultadoEsperado.add(new Pair<>("es", 1));
-        resultadoEsperado.add(new Pair<>("francés", 1));
+        resultadoEsperado.add(new Pair<>("frances", 1));
         resultadoEsperado.add(new Pair<>("observa", 1));
         resultadoEsperado.add(new Pair<>("por", 1));
         resultadoEsperado.add(new Pair<>("que", 1));
         resultadoEsperado.add(new Pair<>("referencia", 1));
-        resultadoEsperado.add(new Pair<>("rotación", 1));
+        resultadoEsperado.add(new Pair<>("rotacion", 1));
         resultadoEsperado.add(new Pair<>("se", 1));
         resultadoEsperado.add(new Pair<>("sistema", 1));
         resultadoEsperado.add(new Pair<>("un", 1));
@@ -97,5 +87,15 @@ public class Ejercicio5Test {
         ArrayList<Pair<String, Integer>> resultadoObtenido = contador.ordenarPalabra(datos);
 
         assertEquals(resultadoEsperado.toString(), resultadoObtenido.toString());
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"test/resources/Almería.txt"})
+    public void testContadorPalabrasFallo(String rutaArchivo) {
+        ContadorDePalabras contador = new ContadorDePalabras();
+        TreeMap<String, Integer> resultadoEsperado = new TreeMap<>();
+        TreeMap<String, Integer> resultadoObtenido = contador.contadorPalabras(rutaArchivo);
+
+        assertEquals(resultadoEsperado, resultadoObtenido);
     }
 }
