@@ -58,6 +58,8 @@ public class MezclaLineal<T extends Comparable<T>> {
 			j++;
 		}
 
+		//USAR TREEMAP PARA AHORRRARSE PASOS DE VARIABLES
+		
 		// Construir el string del resultado
 		StringBuilder resultadoDuplicado = new StringBuilder();
 		for (int k = 0; k < conjuntoFinal.size(); k++) {

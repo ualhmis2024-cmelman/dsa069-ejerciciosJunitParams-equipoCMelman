@@ -18,4 +18,17 @@ public class Ejercicio3Test {
 		assertEquals(result, e3.paswor(password));
 	}
 	
+	public class Ejercicio3TestEjemplo {
+		
+		@CsvFileSource(resources = "/Ejercicio3.csv", delimiter=',', numLinesToSkip = 1)
+		@ParameterizedTest(name = "{index} => Con password ({0}) sale {1}")
+		void testpaswor(String password, String result) {
+			// Arrange
+			Ejercicio3 e3 = new Ejercicio3();
+			// Act
+			// Assert
+			assertEquals(result, e3.paswor(password));
+		}
+	
+}
 }

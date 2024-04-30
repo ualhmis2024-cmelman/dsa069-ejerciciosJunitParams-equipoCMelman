@@ -16,6 +16,7 @@ public class Ejercicio5Test {
         ContadorDePalabras contador = new ContadorDePalabras();
         TreeMap<String, Integer> resultadoEsperado = new TreeMap<>();
         
+        //Podriamos poner el reusltado otra columna del txt e ir leyendo de ahi en vez de ir comparando 1 por 1, esto quita el proposito de lo parametrizao.
         resultadoEsperado.put("1836", 1);
         resultadoEsperado.put("cientifico", 1);
         resultadoEsperado.put("coriolis", 1);
