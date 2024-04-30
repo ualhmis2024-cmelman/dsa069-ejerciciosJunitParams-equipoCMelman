@@ -14,6 +14,7 @@ class Ejercicio2Test {
 		"user,pass,true",
 		"'',pass,false",
 		"user,'',false",
+		"'','',false",
 		"nombredeusuariossuperlagruisimomayorde30caraceteres,pass,false",
 		"user,unsuperpasswordlarguisimoconmasde30caracteresgigantedelto,false",
  		"user,passwordincorrect,false",
