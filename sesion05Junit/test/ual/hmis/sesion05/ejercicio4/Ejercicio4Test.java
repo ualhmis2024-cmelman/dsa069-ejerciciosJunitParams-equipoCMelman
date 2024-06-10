@@ -12,6 +12,7 @@ public class Ejercicio4Test {
         if (str == null || str.isEmpty()) {
             return new Integer[0];
         }
+        //split elementos/quita espacios/cada caracter a int / el stream de int lo convierte a array
         return Arrays.stream(str.split(":"))
                      .map(String::trim)
                      .map(Integer::parseInt)
@@ -21,10 +22,12 @@ public class Ejercicio4Test {
     @ParameterizedTest
     @CsvFileSource(resources = "/Ejercicio4.csv", delimiter = ';', numLinesToSkip = 1)
     void testMezclar(String listaA, String listaB, String resultadoEsperado) {
+    	//string a array de int
         Integer[] arrayA = parseArray(listaA);
         Integer[] arrayB = parseArray(listaB);
         Integer[] esperado = parseArray(resultadoEsperado);
 
+        //assert mezclar
         Integer[] resultado = MezclaLineal.mezclar(arrayA, arrayB);
 
         assertArrayEquals(esperado, resultado);
