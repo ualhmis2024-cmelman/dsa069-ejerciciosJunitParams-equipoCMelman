@@ -1,19 +1,33 @@
 package ual.hmis.sesion05.ejercicio4;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import java.util.Arrays;
 
 public class Ejercicio4Test {
-	@CsvFileSource(resources = "/Ejercicio4.csv", delimiter=';', numLinesToSkip = 1)
-	@ParameterizedTest(name = "{index} => al1=({0}), al2=({1}), resultado=({2})")
-	void MezclaLinealTest(String al1, String al2, String result) {
-		// Arrange
-		MezclaLineal<String> e4 = new MezclaLineal<>();
-		// Act
-		// Assert
-		assertEquals(result, e4.LinealShake(al1,al2));
-	}
+
+    // Método auxiliar para convertir una cadena de números separados por dos puntos en un array de enteros
+    private Integer[] parseArray(String str) {
+        if (str == null || str.isEmpty()) {
+            return new Integer[0];
+        }
+        return Arrays.stream(str.split(":"))
+                     .map(String::trim)
+                     .map(Integer::parseInt)
+                     .toArray(Integer[]::new);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/Ejercicio4.csv", delimiter = ';', numLinesToSkip = 1)
+    void testMezclar(String listaA, String listaB, String resultadoEsperado) {
+        Integer[] arrayA = parseArray(listaA);
+        Integer[] arrayB = parseArray(listaB);
+        Integer[] esperado = parseArray(resultadoEsperado);
+
+        Integer[] resultado = MezclaLineal.mezclar(arrayA, arrayB);
+
+        assertArrayEquals(esperado, resultado);
+    }
 }
 
